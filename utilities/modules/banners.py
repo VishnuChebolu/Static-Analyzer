@@ -1,29 +1,8 @@
-#!/usr/bin/python3
-
+import pyfiglet
 import sys
-try:
-    from rich import print
-except:
-    print("Error: rich module not found.")
-    sys.exit(1)
-
-
-ye = "[bold yellow]"
-
-banner1=f"""
-   █████████   █████               █████     ███                █████████                        ████                                          
- ███░░░░░███ ░░███               ░░███     ░░░                ███░░░░░███                      ░░███                                          
-░███    ░░░  ███████    ██████   ███████   ████   ██████     ░███    ░███  ████████    ██████   ░███  █████ ████  █████████  ██████  ████████ 
-░░█████████ ░░░███░    ░░░░░███ ░░░███░   ░░███  ███░░███    ░███████████ ░░███░░███  ░░░░░███  ░███ ░░███ ░███  ░█░░░░███  ███░░███░░███░░███
- ░░░░░░░░███  ░███      ███████   ░███     ░███ ░███ ░░░     ░███░░░░░███  ░███ ░███   ███████  ░███  ░███ ░███  ░   ███░  ░███████  ░███ ░░░ 
- ███    ░███  ░███ ███ ███░░███   ░███ ███ ░███ ░███  ███    ░███    ░███  ░███ ░███  ███░░███  ░███  ░███ ░███    ███░   █░███░░░   ░███     
-░░█████████   ░░█████ ░░████████  ░░█████  █████░░██████     █████   █████ ████ █████░░████████ █████ ░░███████   █████████░░██████  █████    
- ░░░░░░░░░     ░░░░░   ░░░░░░░░    ░░░░░  ░░░░░  ░░░░░░     ░░░░░   ░░░░░ ░░░░ ░░░░░  ░░░░░░░░ ░░░░░   ░░░░░███  ░░░░░░░░░  ░░░░░░  ░░░░░     
-                                                                                                       ███ ░███                               
-                                                                                                      ░░██████                                
-                                                                                                       ░░░░░░                                 
-"""
-
-
-print(banner1)
-print(f"\t\t\t\t\t\t\t\t\t\t{ye}All in one static malware analysis tool by Vishnu Chebolu{ye}")
+import os
+sys.path.append(os.getcwd()+"/utilities")
+from utilities.logging.log import Log
+print(pyfiglet.figlet_format('Static Analyzer'))
+Log.success("\t\t\t  All in one static malware analysis tool")
+Log.info("\t\t\t\t\t\tby Vishnu Chebolu")
