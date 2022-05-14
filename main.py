@@ -53,9 +53,4 @@
 # import utilities.modules.banners
 
 
-from utilities.modules.packerAnalyzer import rule_based_yara
-
-data = open('warp_test.exe', "rb").read()
-rule_based_yara('warp_test.exe')
-
 
