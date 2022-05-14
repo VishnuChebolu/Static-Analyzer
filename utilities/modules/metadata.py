@@ -3,8 +3,7 @@
 import os
 import sys
 
-sys.path.append(os.getcwd()+"/utilities")
-from utilities.logging.log import Log
+from log import Log
 
 try:
     import exiftool
