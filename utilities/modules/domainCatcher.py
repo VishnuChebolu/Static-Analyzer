@@ -30,7 +30,7 @@ regex_dict = {
 
 def RegexScanner():
    counter = 0
-   Log.info(f"Qu1cksc0pe is analyzing this file for possible domain strings. Please wait...\n")
+   Log.info(f"Static Analyzer is analyzing this file for possible domain strings. Please wait...\n")
    for key in regex_dict:
       for targ in allStrings:
          try:

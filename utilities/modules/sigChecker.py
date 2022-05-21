@@ -4,6 +4,7 @@ import re
 import sys
 import json
 import binascii
+import os
 from log import Log
 
 try:
@@ -35,7 +36,8 @@ infoC = f"{cyan}[{red}*{cyan}]{white}"
 infoS = f"[bold cyan][[bold red]*[bold cyan]][white]"
 
 # Gathering Qu1cksc0pe path variable
-sc0pe_path = open(".path_handler", "r").read()
+# sc0pe_path = os.getcwd()
+sc0pe_path = '/home/kali/Desktop/vishnu/static_analyzer/Static-Analyzer'
 
 targetFile = sys.argv[1]
 
