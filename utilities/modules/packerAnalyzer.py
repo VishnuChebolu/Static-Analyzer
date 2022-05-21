@@ -1,27 +1,29 @@
 import os
 import sys
+from log import Log
+
 try:
     from rich import print
     from rich.table import Table
 except:
-    print("Error: >rich< module not found.")
+    Log.error("rich module not found.")
     sys.exit(1)
 
 try:
     import yara
 except:
-    print("Error: >yara< module not found.")
+    Log.error("yara module not found.")
     sys.exit(1)
 
 
 try:
     from tqdm import tqdm
 except:
-    print("Module: >tqdm< not found.")
+    Log.error("tqdm not found.")
     sys.exit(1)
 
 
-sc0pe_path = os.getcwd()
+sc0pe_path = '/home/kali/Desktop/vishnu/static_analyzer/Static-Analyzer/'
 infoS = f"[bold cyan][[bold red]*[bold cyan]][white]"
 targetFile = str(sys.argv[1])
 
@@ -152,3 +154,6 @@ if __name__ == '__main__':
 
     else:
         pass
+
+
+# python3 packerAnalyzer.py warp_test.exe --single   
