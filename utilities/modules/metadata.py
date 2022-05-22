@@ -40,4 +40,4 @@ mfile = sys.argv[1]
 if os.path.isfile(mfile):
     GetExif(mfile)
 else:
-    print("[blink bold white on red]Target file not found!")
+    Log.error("Target file not found!")

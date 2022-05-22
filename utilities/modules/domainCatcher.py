@@ -4,7 +4,7 @@ import re
 import sys
 from log import Log
 
-allStrings = open("temp.txt", "r").read().split('\n')
+allStrings = open("/home/kali/Desktop/vishnu/static_analyzer/Static-Analyzer/utilities/modules/temp.txt", "r").read().split('\n')
 
 
 # (https://github.com/dwisiswant0 for regex strings)
