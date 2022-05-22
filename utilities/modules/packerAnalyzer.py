@@ -112,7 +112,7 @@ def MultiAnalyzer():
             filNum += 1
 
         multipack = 0
-        print("[bold red]>>>[white] Qu1cksc0pe scans everything under that folder for malicious things. [bold][blink]Please wait...[/blink]")
+        print("[bold red]>>>[white] Static Analyzer scans everything under that folder for malicious things. [bold][blink]Please wait...[/blink]")
         for tf in tqdm(range(0, filNum), desc="Scanning..."):
             if allFiles[tf] != '':
                 scanme = f"{targetFile}/{allFiles[tf]}"
@@ -122,8 +122,7 @@ def MultiAnalyzer():
                     else:
                         pass
                 except:
-                    print(
-                        "[bold white on red]An error occured while opening the file.")
+                    Log.error("An error occured while opening the file.")
                     sys.exit(1)
 
                 for pack in file_sigs:
@@ -133,7 +132,7 @@ def MultiAnalyzer():
                             f"[bold red]{allFiles[tf]}", f"[bold red]{file_sigs[pack]}", f"[bold red]{pack}")
 
         if multipack == 0:
-            print("\n[bold white on red]Nothing found.\n")
+            Log.error("Nothing found.\n")
         else:
             print(answers)
             print(" ")
@@ -144,13 +143,13 @@ if __name__ == '__main__':
         try:
             Analyzer()
         except:
-            print("\n[bold white on red]Program terminated!\n")
+            Log.error("Program terminated!\n")
 
     elif str(sys.argv[2]) == '--multiscan':
         try:
             MultiAnalyzer()
         except:
-            print("\n[bold white on red]Program terminated!\n")
+            Log.error("Program terminated!\n")
 
     else:
         pass

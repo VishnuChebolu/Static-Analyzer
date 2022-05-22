@@ -6,7 +6,6 @@ import hashlib
 import requests
 from log import Log
 
-# Checking for rich existence
 try:
     from rich import print
     from rich.table import Table
@@ -14,23 +13,21 @@ except:
     Log.error("rich module not found.")
     sys.exit(1)
 
-# Legends
 errorS = f"[bold cyan][[bold red]![bold cyan]][white]"
 infoS = f"[bold cyan][[bold red]*[bold cyan]][white]"
 
-# Arguments
 try:
     apikey = str(sys.argv[1])
 except:
-    print("[blink bold white on red]Please get your API key from [white]-> [bold green][a]https://www.virustotal.com/[/a]")
+    Log.error("Please get your API key from https://www.virustotal.com/")
     sys.exit(1)
 try:
     targetFile = str(sys.argv[2])
 except:
-    print("\n[bold white on red]Please enter your file!!\n")
+    Log.error("Please enter your file!!")
     sys.exit(1)
 
-# An array for AV names
+# An array for AntiVirus names
 avArray = ['ALYac', 'APEX', 'AVG', 'Acronis', 'Ad-Aware', 
            'AegisLab', 'AhnLab-V3', 'Alibaba', 'Antiy-AVL', 
            'Arcabit', 'Avast', 'Avast-Mobile', 'Avira', 'Baidu', 
@@ -49,17 +46,13 @@ avArray = ['ALYac', 'APEX', 'AVG', 'Acronis', 'Ad-Aware',
            'Webroot', 'Yandex', 'Zillya', 'ZoneAlarm', 'Zoner', 'eGambit'
 ]
 
-# Function for calculate md5 hash for files
 def Hasher(targetFile):
     finalHash = hashlib.md5(open(targetFile, "rb").read()).hexdigest()
     return finalHash
 
-# Function for querying target file's hashes on VT
-def DoRequest(targetFile):
-    print(f"\n{infoS} Sending query to VirusTotal API...")
-    # Building request
+def DoRequest(targetHash):
+    Log.info(f"Sending query to VirusTotal API...")
     request_headers = {"x-apikey": apikey}
-    targetHash = Hasher(targetFile)
     vt_data = requests.get(f"https://www.virustotal.com/api/v3/files/{targetHash}", headers=request_headers)
     if vt_data.ok:
         return vt_data.json()
@@ -68,9 +61,8 @@ def DoRequest(targetFile):
 
 # Function for parsing report.txt
 def ReportParser(reportStr):
+    Log.info(f"Parsing the scan report...\n")
     if reportStr is not None:
-        print(f"{infoS} Parsing the scan report...\n")
-
         # Threat Categories
         threatTable = Table()
         threatTable.add_column("[bold green]Threat Categories", justify="center")
@@ -193,9 +185,11 @@ def ReportParser(reportStr):
                             crowdTable.add_row(str(sant), f'{reportStr["data"]["attributes"]["crowdsourced_ids_stats"][alrtlvl]}')
                     print(crowdTable)
                     print(" ")
-            else:
-                print("\n[bold white on red]There is no IDS reports for target file.\n")
+    else:
+        Log.success("There are no IDS reports for target file.\n")
 
 # Execution area
-reportstr = DoRequest(targetFile)
+# targetHash = Hasher(targetFile)
+targetHash = '16a114b4f0e472487a3236d251672415b98d2324b3208af61b9b75c5e42e0d42'
+reportstr = DoRequest(targetHash)
 ReportParser(reportstr)

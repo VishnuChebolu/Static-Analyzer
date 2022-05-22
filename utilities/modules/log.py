@@ -8,7 +8,8 @@ class Log():
 
     @staticmethod
     def info(word):
-        Log._print("\033[94m[~] {}\n\033[00m" .format(word))
+        Log._print("\033[93m[~] {}\n\033[00m" .format(word))
+        
 
     @staticmethod
     def warning(word):
@@ -27,4 +28,4 @@ class Log():
 
     @staticmethod
     def query(word):
-        Log._print("\033[93m[?] {}\n\033[00m" .format(word))
+        Log._print("\033[94m[?] {}\n\033[00m" .format(word))
