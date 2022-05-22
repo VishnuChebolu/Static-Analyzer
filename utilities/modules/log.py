@@ -18,7 +18,7 @@ class Log():
 
     @staticmethod
     def error(word):
-        Log._print("\033[91m[!] {}\n\033[00m" .format(word))
+        Log._print("\033[91m[-] {}\n\033[00m" .format(word))
 
 
     @staticmethod

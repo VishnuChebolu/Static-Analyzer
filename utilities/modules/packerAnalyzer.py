@@ -63,7 +63,7 @@ def YaraBased(target_file):
             print(" ")
 
     if yara_match_indicator == 0:
-        print(f"[bold white on red]Not any rules matched for {target_file}")
+        Log.error(f"No rules matched for {target_file}")
 
 
 def Analyzer():
@@ -73,7 +73,7 @@ def Analyzer():
         else:
             pass
     except:
-        print("[bold white on red]An error occured while opening the file.")
+        Log.error("An error occured while opening the file.")
         sys.exit(1)
 
     packTable = Table()
@@ -81,7 +81,7 @@ def Analyzer():
     packTable.add_column("[bold green]Packer Type", justify="center")
 
     packed = 0
-    print("[bold magenta]>>>[white] Performing [bold green][blink]strings[/blink] [white]based scan...")
+    Log.info("Performing strings based scan...")
     for pack in file_sigs:
         if file_sigs[pack].encode() in data:
             packed += 1
@@ -89,11 +89,11 @@ def Analyzer():
                 f"[bold red]{file_sigs[pack]}", f"[bold red]{pack}")
 
     if packed == 0:
-        print("\n[bold white on red]Nothing found.\n")
+        Log.error("Nothing found.\n")
     else:
         print(packTable)
 
-    print("[bold magenta]>>>[white] Performing [bold green][blink]YARA Rule[/blink] [white]based scan...")
+    Log.info("Performing YARA Rule based scan...")
     YaraBased(target_file=targetFile)
 
 

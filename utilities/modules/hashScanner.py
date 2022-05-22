@@ -104,7 +104,7 @@ else:
 
 # Check for if database is up to date
 def UpToDate():
-    print("[bold]Checking for database state...")
+    Log.info("Checking for database state...")
     try:
         dbs = requests.get("https://raw.githubusercontent.com/CYB3RMX/MalwareHashDB/main/README.md")
         database_content = dbcursor.execute(f"SELECT * FROM HashDB").fetchall()
@@ -128,6 +128,7 @@ def DatabaseUpdate():
 def NormalScan():
     # Hashing
     targetHash = GetHash(targetFile)
+    # targetHash = '16a114b4f0e472487a3236d251672415b98d2324b3208af61b9b75c5e42e0d42'
 
     # Creating answer table
     answTable = Table()
@@ -140,16 +141,15 @@ def NormalScan():
     # Printing informations
     print(f"[bold cyan]>>>[white] Total Hashes: [bold green]{len(database_content)}")
     print(f"[bold cyan]>>>[white] File Name: [bold green]{targetFile}")
-    print(f"[bold cyan]>>>[white] Target Hash: [bold green]{targetHash}")
-
+    print(f"[bold cyan]>>>[white] Target Hash: [bold green]{targetHash}\n")
     # Finding target hash in the database_content
     db_answer = dbcursor.execute(f"SELECT * FROM HashDB where hash=\"{targetHash}\"").fetchall()
     if db_answer != []:
         answTable.add_row(f"[bold red]{db_answer[0][0]}", f"[bold red]{db_answer[0][1]}")
         print(answTable)
     else:
-        print("\n[bold white on red]Target hash is not in our database!!")
-        print("[bold magenta]>>>[bold white] Try [green]--analyze[white] and [green]--vtFile[white] instead.\n")
+        Log.error("Target hash is not in our database!!")
+        print("[bold magenta][!][bold white] Try [green]--analyze[white] and [green]--vtFile[white] instead.\n")
     hashbase.close()
 
 username = 'vishnu'
@@ -312,4 +312,4 @@ if __name__ == '__main__':
         pass
 
 
-# running python3 hashScanner.py warp_test.exe --normal
+# python3 hashScanner.py warp_test.exe --normal
