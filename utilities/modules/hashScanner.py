@@ -149,7 +149,6 @@ def NormalScan():
         print(answTable)
     else:
         Log.error("Target hash is not in our database!!")
-        print("[bold magenta][!][bold white] Try [green]--analyze[white] and [green]--vtFile[white] instead.\n")
     hashbase.close()
 
 username = 'vishnu'
