@@ -4,7 +4,11 @@ import re
 import sys
 from log import Log
 
-allStrings = open("/home/kali/Desktop/vishnu/static_analyzer/Static-Analyzer/utilities/modules/temp.txt", "r").read().split('\n')
+# allStrings = open("/home/kali/Desktop/vishnu/static_analyzer/Static-Analyzer/utilities/modules/temp.txt", "r").read().split('\n')
+try:
+   allStrings = open(sys.argv[1], "r").read().split('\n')
+except :
+   allStrings = ''
 
 
 # (https://github.com/dwisiswant0 for regex strings)
@@ -31,6 +35,7 @@ regex_dict = {
 def RegexScanner():
    counter = 0
    Log.info(f"Static Analyzer is analyzing this file for possible domain strings. Please wait...\n")
+
    for key in regex_dict:
       for targ in allStrings:
          try:

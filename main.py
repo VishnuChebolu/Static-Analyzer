@@ -153,7 +153,7 @@ def pe():
 def domain():
     Log.info('Scanning using Regex...')
     if args.file is not None:
-        command = f"python3 {sc0pe_path}/modules/domainCatcher.py"
+        command = f"python3 {sc0pe_path}/modules/domainCatcher.py {args.file}"
         os.system(command)
     
     if args.folder is not None:
