@@ -133,7 +133,7 @@ def vtfile():
             print("[bold]Please get your API key from -> [bold green][a]https://www.virustotal.com/[/a] and enter it in .env file\n")
             sys.exit(1)
         else:
-            command = f"python3 {sc0pe_path}/modules/VTwrapper.py {API} {args.file}"
+            command = f"python3 {sc0pe_path}/modules/vtScanner.py {API} {args.file}"
             os.system(command)
     
     if args.folder is not None:

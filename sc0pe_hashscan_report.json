@@ -1,5 +1,11 @@
 {
-    "report": [],
+    "report": [
+        {
+            "file_name": "./utilities/testfiles/wanncry.exe",
+            "file_hash": "84c82835a5d21bbcf75a61706d8ab549",
+            "threat_name": "Uds.Dangerousobject.Multi!c"
+        }
+    ],
     "user": "vishnu",
     "date": "23-05-2022"
 }
