@@ -5,10 +5,18 @@ import sys
 from log import Log
 
 # allStrings = open("/home/kali/Desktop/vishnu/static_analyzer/Static-Analyzer/utilities/modules/temp.txt", "r").read().split('\n')
+
+import subprocess
+
+command = f'strings {sys.argv[1]}'
+execute = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,stdin=subprocess.PIPE)
+result = execute.stdout.read() + execute.stderr.read()
+result = result.decode().split('\n')
 try:
-   allStrings = open(sys.argv[1], "r").read().split('\n')
+   allStrings = result
 except :
    allStrings = ''
+
 
 
 # (https://github.com/dwisiswant0 for regex strings)
