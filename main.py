@@ -173,20 +173,48 @@ def packerIdentify():
 def static_analyzer():
     if args.all:
         Log.info('Performing all the available scans.')
-        hashdb()
-        print()
-        sigcheck()
-        print()
-        metadata()
-        print()
-        vtfile()
-        print()
-        pe()
-        print()
-        domain()
-        print()
-        packerIdentify()
-        print()
+        
+        try:
+            hashdb()
+            pass
+        except:
+            pass
+        
+        try:
+            sigcheck()
+            pass
+        except:
+            pass
+        
+        try:
+            metadata()
+            pass
+        except:
+            pass
+        
+        try:
+            vtfile()
+            pass
+        except:
+            pass
+        
+        try:
+            pe()
+            pass
+        except:
+            pass
+        
+        try:
+            domain()
+            pass
+        except:
+            pass
+        
+        try:
+            packerIdentify()
+            pass
+        except:
+            pass
 
     # Hash Scanning
     if args.hashscan:        

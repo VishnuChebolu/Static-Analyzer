@@ -183,12 +183,14 @@ def MultipleScan():
     # Handling folders
     if os.path.isdir(targetFile) == True:
         # Get all files under that directory recursively...
-        print("[bold red]>>>[bold white] Qu1cksc0pe gathering all files under that directory recursively. [bold blink]Please wait...")
+        print("[bold red]>>>[bold white] Static Analyzer is gathering all files under that directory recursively. [bold blink]Please wait...")
         scanfiles = Table()
         scanfiles.add_column("[bold green]Name", justify="center")
         scanfiles.add_column("[bold green]Count", justify="center")
         scan_count = 0
         file_names = []
+
+        # root path, dirs in root path, files in path
         for root, d_names, f_names in os.walk(targetFile):
             for ff in f_names:
                 file_names.append(os.path.join(root, ff))
@@ -220,7 +222,7 @@ def MultipleScan():
                 mulansTable, border_style="bold red", title="Malicious Files"
             )
         )
-        upper_panel = Panel(upper_grid, border_style="bold blue", title="Qu1cksc0pe Hashscan")
+        upper_panel = Panel(upper_grid, border_style="bold blue", title="Static Analyzer Hashscan")
         program_layout["Top"].update(upper_panel)
 
         # Scan progress
